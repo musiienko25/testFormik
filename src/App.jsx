@@ -13,6 +13,28 @@ const validationSchema = Yup.object().shape({
 });
 
 const ContactForm = () => {
+  const styles = {
+    form: {
+      display: 'flex',
+      flexDirection: 'column',
+      maxWidth: '400px',
+      margin: 'auto',
+      '& > *': {
+        margin: '8px 0',
+      },
+    },
+    submitButton: {
+      marginTop: '16px',
+    },
+    input: {
+      marginBottom: 20
+    },
+    button: {
+      maxWidth: '100%',
+      margin: 'auto'
+    }
+  };
+
   const initialValues = {
     name: "",
     email: "",
@@ -30,8 +52,9 @@ const ContactForm = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form style={styles.form} onSubmit={formik.handleSubmit}>
       <TextField
+        style={styles.input}
         id="name"
         name="name"
         label="Name"
@@ -42,6 +65,7 @@ const ContactForm = () => {
         helperText={formik.touched.name && formik.errors.name}
       />
       <TextField
+        style={styles.input}
         id="email"
         name="email"
         label="Email"
@@ -52,6 +76,7 @@ const ContactForm = () => {
         helperText={formik.touched.email && formik.errors.email}
       />
       <TextField
+        style={styles.input}
         id="message"
         name="message"
         label="Message"
@@ -63,7 +88,7 @@ const ContactForm = () => {
         error={formik.touched.message && Boolean(formik.errors.message)}
         helperText={formik.touched.message && formik.errors.message}
       />
-      <Button variant="contained" color="primary" type="submit">
+      <Button style={styles.button} disabled={formik.errors.message ? true : false} variant="contained" color="primary" type="submit">
         Submit
       </Button>
       {formik.submitCount > 0 && (
