@@ -1,6 +1,6 @@
 ## Getting started
 
-Start the example!
+Start the project!
 
 ```
 npm run dev
